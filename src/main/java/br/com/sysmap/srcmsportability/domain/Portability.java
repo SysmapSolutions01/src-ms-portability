@@ -39,7 +39,7 @@ public class Portability implements Serializable {
     private PortabilityStatus portabilityStatus;
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
 
