@@ -7,12 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "address")
-public class Address {
+@Table(name = "tb_address")
+public class Address implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(generator = "UUID")

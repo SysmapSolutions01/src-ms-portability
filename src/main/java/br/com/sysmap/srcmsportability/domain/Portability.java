@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.UUID;
 
 
@@ -16,7 +17,8 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(name = "tb_portability")
-public class Portability {
+public class Portability implements Serializable {
+    private static final long serialVersionUID = 1L;
 
 
     @Id
