@@ -4,7 +4,9 @@ import br.com.sysmap.srcmsportability.domain.Portability;
 import br.com.sysmap.srcmsportability.domain.enums.PortabilityStatus;
 import br.com.sysmap.srcmsportability.framework.adapters.in.dtos.InputPortability;
 
+import java.util.UUID;
+
 public interface PortabilityService {
     Portability newPortability(InputPortability portability);
-    Portability putPortability(PortabilityStatus portabilityStatus);
+    void putPortability(UUID id, PortabilityStatus portabilityStatus);
 }

@@ -6,6 +6,9 @@ import br.com.sysmap.srcmsportability.domain.Portability;
 import br.com.sysmap.srcmsportability.domain.enums.PortabilityStatus;
 import br.com.sysmap.srcmsportability.framework.adapters.in.dtos.InputPortability;
 
+import java.util.Optional;
+import java.util.UUID;
+
 public class PortabilityServiceImpl implements PortabilityService {
 
     private final PortabilityRepository portabilityRepository;
@@ -20,7 +23,9 @@ public class PortabilityServiceImpl implements PortabilityService {
     }
 
     @Override
-    public Portability putPortability(PortabilityStatus portabilityStatus) {
-        return null;
+    public void putPortability(UUID id,PortabilityStatus portabilityStatus) {
+        Optional<Portability> entity = portabilityRepository.findById(id);
+        entity.get().setPortabilityStatus(portabilityStatus);
+        portabilityRepository.save(entity.get());
     }
 }
