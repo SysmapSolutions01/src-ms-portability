@@ -46,7 +46,7 @@ public class PortabilityServiceImpl implements PortabilityService {
 
         Portability portability = Portability.builder()
                 .user(user)
-                .portabilityStatus(PortabilityStatus.NAO_PORTADO)
+                .portabilityStatus(PortabilityStatus.PROCESSANDO_PORTABILIDADE)
                 .source(inputPortability.getPortability().getSource())
                 .target(inputPortability.getPortability().getTarget())
                 .build();
