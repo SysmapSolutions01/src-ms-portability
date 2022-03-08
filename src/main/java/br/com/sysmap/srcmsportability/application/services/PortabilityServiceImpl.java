@@ -25,12 +25,9 @@ public class PortabilityServiceImpl implements PortabilityService {
 
     @Override
     public void putPortability(UUID id, PortabilityStatus portabilityStatus) {
-        try {
-            Optional<Portability> entity = portabilityRepository.findById(id);
-            entity.get().setPortabilityStatus(portabilityStatus);
-            portabilityRepository.save(entity.get());
-        } catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException("Portabilidade não encontrada na base de dados!");
-        }
+            var entity = portabilityRepository.findById(id);
+            Portability portability = entity.orElseThrow(() -> new ResourceNotFoundException("Portabilidade não encontrada"));
+            portability.setPortabilityStatus(portabilityStatus);
+            portabilityRepository.save(portability);
     }
 }
