@@ -2,8 +2,8 @@ package br.com.sysmap.srcmsportability.framework.adapters.in.rest;
 
 import br.com.sysmap.srcmsportability.application.ports.in.PortabilityService;
 import br.com.sysmap.srcmsportability.domain.Portability;
-import br.com.sysmap.srcmsportability.domain.enums.PortabilityStatus;
 import br.com.sysmap.srcmsportability.framework.adapters.in.dtos.InputPortability;
+import br.com.sysmap.srcmsportability.framework.adapters.in.dtos.UpdatePortabilityStatusDTO;
 import br.com.sysmap.srcmsportability.framework.adapters.in.rest.dtos.OutputPortabilityCreated;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -31,9 +31,9 @@ public class PortabilityController {
     }
 
     @PutMapping(value = "/{portabilityId}")
-    public ResponseEntity<String> putPortability(@PathVariable UUID portabilityId, @RequestBody PortabilityStatus status){
+    public ResponseEntity<String> putPortability(@PathVariable UUID portabilityId, @RequestBody UpdatePortabilityStatusDTO status){
         portabilityService.putPortability(portabilityId,status);
-        log.info("Callback recebido com sucesso, status: {}", status);
-        return ResponseEntity.ok().body("Portabilidade recebida, status: " + status+ "!");
+        log.info("Callback recebido com sucesso, status: {}", status.getStatus());
+        return ResponseEntity.ok().body("Portabilidade recebida, status: " + status.getStatus()+ "!");
     }
 }
