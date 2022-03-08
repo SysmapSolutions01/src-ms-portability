@@ -12,3 +12,11 @@ spring:
         web-allow-others: "true"
         trace: "true"
       path: "/h2-console"
+  kafka:
+    bootstrap-servers: localhost:29092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer:  org.apache.kafka.common.serialization.StringSerializer
+topic:
+  name:
+    producer: src-ms-portability-create
