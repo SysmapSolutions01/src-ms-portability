@@ -8,6 +8,7 @@ import br.com.sysmap.srcmsportability.domain.Portability;
 import br.com.sysmap.srcmsportability.domain.User;
 import br.com.sysmap.srcmsportability.domain.enums.PortabilityStatus;
 import br.com.sysmap.srcmsportability.framework.adapters.in.dtos.InputPortability;
+import br.com.sysmap.srcmsportability.framework.adapters.in.dtos.UpdatePortabilityStatusDTO;
 import br.com.sysmap.srcmsportability.framework.exceptions.ResourceNotFoundException;
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
@@ -55,10 +56,10 @@ public class PortabilityServiceImpl implements PortabilityService {
     }
 
     @Override
-    public void putPortability(UUID id, PortabilityStatus portabilityStatus) {
+    public void putPortability(UUID id, UpdatePortabilityStatusDTO portabilityStatus) {
             var entity = portabilityRepository.findById(id);
             Portability portability = entity.orElseThrow(() -> new ResourceNotFoundException("Portabilidade não encontrada"));
-            portability.setPortabilityStatus(portabilityStatus);
+            portability.setPortabilityStatus(portabilityStatus.getStatus());
             portabilityRepository.save(portability);
     }
 }
