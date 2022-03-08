@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ApplicationControllerAdvice {
 
-    @ExceptionHandler(EntityNotFoundException.class)
+    @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Errors handleEntityNotFoundException(EntityNotFoundException ex){
+    public Errors handleEntityNotFoundException(ResourceNotFoundException ex){
         return new Errors(ex.getMessage());
     }
 
