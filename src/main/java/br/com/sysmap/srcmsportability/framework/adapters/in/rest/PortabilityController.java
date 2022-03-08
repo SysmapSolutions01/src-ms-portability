@@ -4,7 +4,7 @@ import br.com.sysmap.srcmsportability.application.ports.in.PortabilityService;
 import br.com.sysmap.srcmsportability.domain.Portability;
 import br.com.sysmap.srcmsportability.domain.enums.PortabilityStatus;
 import br.com.sysmap.srcmsportability.framework.adapters.in.dtos.InputPortability;
-import br.com.sysmap.srcmsportability.framework.adapters.in.rest.dtos.OutputPortability;
+import br.com.sysmap.srcmsportability.framework.adapters.in.rest.dtos.OutputPortabilityCreated;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +25,9 @@ public class PortabilityController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public OutputPortability newPortability(@RequestBody InputPortability inputPortability) {
+    public OutputPortabilityCreated newPortability(@RequestBody InputPortability inputPortability) {
         Portability portability = this.portabilityService.newPortability(inputPortability);
-        return new OutputPortability(portability.getPortabilityId());
+        return new OutputPortabilityCreated(portability.getPortabilityId());
     }
 
     @PutMapping(value = "/{portabilityId}")
