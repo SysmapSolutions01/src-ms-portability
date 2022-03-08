@@ -1,6 +1,9 @@
 package br.com.sysmap.srcmsportability.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +14,9 @@ import java.util.UUID;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "tb_address")
 public class Address implements Serializable {
     private static final long serialVersionUID = 1L;
