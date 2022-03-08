@@ -9,6 +9,8 @@ import br.com.sysmap.srcmsportability.domain.User;
 import br.com.sysmap.srcmsportability.domain.enums.PortabilityStatus;
 import br.com.sysmap.srcmsportability.framework.adapters.in.dtos.InputPortability;
 import br.com.sysmap.srcmsportability.framework.exceptions.ResourceNotFoundException;
+import org.modelmapper.ModelMapper;
+
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 import java.util.UUID;
@@ -16,36 +18,17 @@ import java.util.UUID;
 public class PortabilityServiceImpl implements PortabilityService {
 
     private final PortabilityRepository portabilityRepository;
+    private final ModelMapper modelMapper;
 
-    public PortabilityServiceImpl(PortabilityRepository portabilityRepository) {
+    public PortabilityServiceImpl(PortabilityRepository portabilityRepository, ModelMapper modelMapper) {
         this.portabilityRepository = portabilityRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
     public Portability newPortability(InputPortability inputPortability) {
-        Line line = new Line();
-        line.setNumber(
-            inputPortability.getUser().getLine().getNumber()
-        );
-
-        Address address = Address.builder()
-                .street(inputPortability.getUser().getAddress().getStreet())
-                .number(inputPortability.getUser().getAddress().getNumber())
-                .country(inputPortability.getUser().getAddress().getCountry())
-                .city(inputPortability.getUser().getAddress().getCity())
-                .stateOrRegion(inputPortability.getUser().getAddress().getStateOrRegion())
-                .build();
-
-        User user = User.builder()
-                .line(line)
-                .address(address)
-                .name(inputPortability.getUser().getName())
-                .dateOfBirth(inputPortability.getUser().getDateOfBirth())
-                .documentNumber(inputPortability.getUser().getDocumentNumber())
-                .build();
-
         Portability portability = Portability.builder()
-                .user(user)
+                .user(modelMapper.map(inputPortability.getUser(), User.class))
                 .portabilityStatus(PortabilityStatus.PROCESSANDO_PORTABILIDADE)
                 .source(inputPortability.getPortability().getSource())
                 .target(inputPortability.getPortability().getTarget())
