@@ -2,8 +2,6 @@ package br.com.sysmap.srcmsportability.application.services;
 
 import br.com.sysmap.srcmsportability.application.ports.in.PortabilityService;
 import br.com.sysmap.srcmsportability.application.ports.out.PortabilityRepository;
-import br.com.sysmap.srcmsportability.domain.Address;
-import br.com.sysmap.srcmsportability.domain.Line;
 import br.com.sysmap.srcmsportability.domain.Portability;
 import br.com.sysmap.srcmsportability.domain.User;
 import br.com.sysmap.srcmsportability.domain.enums.PortabilityStatus;
@@ -12,8 +10,6 @@ import br.com.sysmap.srcmsportability.framework.adapters.in.dtos.UpdatePortabili
 import br.com.sysmap.srcmsportability.framework.exceptions.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.Optional;
 import java.util.UUID;
 
 public class PortabilityServiceImpl implements PortabilityService {
