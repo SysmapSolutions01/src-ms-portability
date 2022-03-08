@@ -17,16 +17,11 @@ public class PortabilityRepositoryImpl implements PortabilityRepository {
 
     @Override
     public Portability save(Portability portability) {
-        return null;
-    }
-
-    @Override
-    public List<Portability> findAll(UUID userId) {
-        return null;
+        return portabilityRepositoryJpa.save(portability);
     }
 
     @Override
     public Optional<Portability> findById(UUID portabilityId) {
-        return Optional.empty();
+        return portabilityRepositoryJpa.findById(portabilityId.toString());
     }
 }

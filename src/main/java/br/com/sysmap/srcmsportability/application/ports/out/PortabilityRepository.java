@@ -8,6 +8,5 @@ import java.util.UUID;
 
 public interface PortabilityRepository {
     Portability save(Portability portability);
-    List<Portability> findAll(UUID userId);
     Optional<Portability> findById(UUID portabilityId);
 }
