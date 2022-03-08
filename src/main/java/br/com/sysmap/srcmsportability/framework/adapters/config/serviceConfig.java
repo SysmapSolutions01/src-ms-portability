@@ -1,6 +1,8 @@
 package br.com.sysmap.srcmsportability.framework.adapters.config;
 
 import br.com.sysmap.srcmsportability.SrcMsPortabilityApplication;
+import br.com.sysmap.srcmsportability.application.ports.out.PortabilityRepository;
+import br.com.sysmap.srcmsportability.application.services.PortabilityServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackageClasses = SrcMsPortabilityApplication.class)
 public class serviceConfig {
     @Bean
-    PortabilityService portabilityService(PortabilityRepository portabilityRepository){
-        return new PortabilityService(portabilityRepository);
+    PortabilityServiceImpl portabilityService(PortabilityRepository portabilityRepository){
+        return new PortabilityServiceImpl(portabilityRepository);
     }
 }
