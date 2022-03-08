@@ -22,6 +22,6 @@ public class PortabilityRepositoryImpl implements PortabilityRepository {
 
     @Override
     public Optional<Portability> findById(UUID portabilityId) {
-        return portabilityRepositoryJpa.findById(portabilityId.toString());
+        return portabilityRepositoryJpa.findById(portabilityId);
     }
 }
