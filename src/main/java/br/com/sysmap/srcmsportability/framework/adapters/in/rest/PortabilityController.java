@@ -23,6 +23,7 @@ public class PortabilityController {
     @PutMapping(value = "/{portabilityId}")
     public ResponseEntity<String> putPortability(@PathVariable UUID portabilityId, @RequestBody PortabilityStatus status){
         portabilityService.putPortability(portabilityId,status);
+        log.info("Callback recebido com sucesso, status: {}", status);
         return ResponseEntity.ok().body("Portabilidade recebida, status: " + status+ "!");
     }
 
