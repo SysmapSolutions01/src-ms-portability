@@ -27,6 +27,7 @@ public class PortabilityController {
     @ResponseStatus(HttpStatus.CREATED)
     public OutputPortabilityCreated newPortability(@RequestBody InputPortability inputPortability) {
         Portability portability = this.portabilityService.newPortability(inputPortability);
+        log.info("Portabilidade criada com sucesso: {}", portability.getPortabilityId());
         return new OutputPortabilityCreated(portability.getPortabilityId());
     }
 
@@ -34,6 +35,6 @@ public class PortabilityController {
     public ResponseEntity<String> putPortability(@PathVariable UUID portabilityId, @RequestBody UpdatePortabilityStatusDTO status){
         portabilityService.putPortability(portabilityId,status);
         log.info("Callback recebido com sucesso, status: {}", status.getStatus());
-        return ResponseEntity.ok().body("Portabilidade recebida, status: " + status.getStatus()+ "!");
+        return ResponseEntity.ok().body("Portabilidade concluída, status: " + status.getStatus()+ "!");
     }
 }
