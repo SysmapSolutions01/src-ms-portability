@@ -5,7 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -23,13 +25,14 @@ public class UserDTO implements Serializable {
     @CPF(message = "Field 'documentNumber' must be a valid CPF")
     private String documentNumber;
 
-    @NotBlank(message = "Field 'dateOfBirth' cannot be blank")
     @Past(message = "Field 'dateOfBirth' must be a past date")
     private LocalDate dateOfBirth;
 
-    @NotBlank(message = "Field 'line' cannot be blank")
+    @Valid
+    @NotNull(message = "Field 'line' cannot be null")
     private LineDTO line;
 
-    @NotBlank(message = "Field 'address' cannot be blank")
+    @Valid
+    @NotNull(message = "Field 'address' cannot be null")
     private AddressDTO address;
 }

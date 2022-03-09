@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -14,9 +15,11 @@ import java.io.Serializable;
 public class InputPortability implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @NotBlank(message = "Field 'user' cannot be blank")
+    @Valid
+    @NotNull(message = "Field 'user' cannot be null")
     private UserDTO user;
 
-    @NotBlank(message = "Field 'portability' cannot be blank")
+    @Valid
+    @NotNull(message = "Field 'portability' cannot be null")
     private PortabilityDTO portability;
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
@@ -14,9 +15,9 @@ import java.io.Serializable;
 public class PortabilityDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @NotBlank(message = "Field 'source' cannot be blank")
+    @NotNull(message = "Field 'source' cannot be null")
     private TelephoneCompany source;
 
-    @NotBlank(message = "Field 'target' cannot be blank")
+    @NotNull(message = "Field 'target' cannot be null")
     private TelephoneCompany target;
 }

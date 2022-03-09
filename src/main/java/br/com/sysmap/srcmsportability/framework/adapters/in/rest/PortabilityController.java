@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @Slf4j
@@ -25,7 +26,7 @@ public class PortabilityController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public OutputPortabilityCreated newPortability(@RequestBody InputPortability inputPortability) {
+    public OutputPortabilityCreated newPortability(@Valid  @RequestBody InputPortability inputPortability) {
         Portability portability = this.portabilityService.newPortability(inputPortability);
         log.info("Portabilidade criada com sucesso: {}", portability.getPortabilityId());
         return new OutputPortabilityCreated(portability.getPortabilityId());
