@@ -34,7 +34,7 @@ public class ControllerExceptionHandler {
 
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<StandardError> allowedComapanies(HttpMessageNotReadableException e, HttpServletRequest request) {
+    public ResponseEntity<StandardError> allowedCompanies(HttpMessageNotReadableException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
         StandardError error = new StandardError();
         error.setTimestamp(Instant.now());
