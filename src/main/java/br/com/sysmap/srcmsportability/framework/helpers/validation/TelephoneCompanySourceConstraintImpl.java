@@ -13,6 +13,6 @@ public class TelephoneCompanySourceConstraintImpl implements ConstraintValidator
 
     @Override
     public boolean isValid(Enum value, ConstraintValidatorContext context) {
-        return TelephoneCompany.VIVO.toString().equals(value.toString().toUpperCase()) ? true : false;
+        return TelephoneCompany.VIVO.toString().equals(value.toString().toUpperCase());
     }
 }

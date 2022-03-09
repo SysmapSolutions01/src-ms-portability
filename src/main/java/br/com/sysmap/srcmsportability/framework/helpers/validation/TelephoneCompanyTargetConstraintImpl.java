@@ -1,6 +1,7 @@
 package br.com.sysmap.srcmsportability.framework.helpers.validation;
 
 import br.com.sysmap.srcmsportability.domain.enums.TelephoneCompany;
+import java.util.Objects;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -15,6 +16,6 @@ public class TelephoneCompanyTargetConstraintImpl implements ConstraintValidator
 
     @Override
     public boolean isValid(Enum value, ConstraintValidatorContext context) {
-        return value.toString().toUpperCase() != TelephoneCompany.VIVO.toString() ? true : false;
+        return !Objects.equals(value.toString().toUpperCase(), TelephoneCompany.VIVO.toString());
     }
 }
