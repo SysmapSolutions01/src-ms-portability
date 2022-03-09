@@ -25,6 +25,8 @@ public class FieldMessage {
 
     public String getMessage() {
         return message;
+
+
     }
 
     public void setMessage(String message) {
