@@ -6,7 +6,7 @@ import java.util.Objects;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class TelephoneCompanyTargetConstraintImpl implements ConstraintValidator<TelephoneCompanyTargetConstraint,Enum> {
+public class TelephoneCompanyTargetConstraintImpl implements ConstraintValidator<TelephoneCompanyTargetConstraint,Enum<?>> {
 
 
     @Override
