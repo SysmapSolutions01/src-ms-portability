@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackageClasses = SrcMsPortabilityApplication.class)
-public class serviceConfig {
+public class ServiceConfig {
     @Bean
     PortabilityServiceImpl portabilityService(PortabilityRepository portabilityRepository, ModelMapper modelMapper){
         return new PortabilityServiceImpl(portabilityRepository, modelMapper);
