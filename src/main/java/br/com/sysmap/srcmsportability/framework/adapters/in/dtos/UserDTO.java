@@ -25,6 +25,7 @@ public class UserDTO implements Serializable {
     @CPF(message = "Field 'documentNumber' must be a valid CPF")
     private String documentNumber;
 
+    @NotNull(message = "Field 'dateOfBirth' cannot be blank")
     @Past(message = "Field 'dateOfBirth' must be a past date")
     private LocalDate dateOfBirth;
 
