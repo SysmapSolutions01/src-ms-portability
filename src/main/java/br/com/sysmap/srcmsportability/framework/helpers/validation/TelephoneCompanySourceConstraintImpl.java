@@ -5,7 +5,7 @@ import br.com.sysmap.srcmsportability.domain.enums.TelephoneCompany;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class TelephoneCompanySourceConstraintImpl implements ConstraintValidator<TelephoneCompanySourceConstraint,Enum> {
+public class TelephoneCompanySourceConstraintImpl implements ConstraintValidator<TelephoneCompanySourceConstraint,Enum<?>> {
     @Override
     public void initialize(TelephoneCompanySourceConstraint constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
