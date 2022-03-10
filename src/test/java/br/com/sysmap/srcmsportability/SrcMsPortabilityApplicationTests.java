@@ -43,7 +43,7 @@ class SrcMsPortabilityApplicationTests {
 		Portability response = easy.nextObject(Portability.class);
 		try {
 			BDDMockito.given(portabilityService.newPortability(any())).willReturn(response);
-			OutputPortabilityCreated outputPortabilityCreated = portabilityController.newPortability(param);
+			ResponseEntity<OutputPortabilityCreated> outputPortabilityCreated = portabilityController.newPortability(param);
 			Assertions.assertNotNull(outputPortabilityCreated);
 		} catch (Exception e) {
 			Assertions.fail(e.getMessage(), e);

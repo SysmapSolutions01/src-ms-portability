@@ -6,8 +6,7 @@ import br.com.sysmap.srcmsportability.domain.Portability;
 import br.com.sysmap.srcmsportability.domain.User;
 import br.com.sysmap.srcmsportability.framework.adapters.in.dtos.InputPortability;
 import br.com.sysmap.srcmsportability.framework.adapters.in.dtos.UpdatePortabilityStatusDTO;
-import br.com.sysmap.srcmsportability.framework.adapters.in.rest.PortabilityController;
-import br.com.sysmap.srcmsportability.framework.adapters.in.rest.dtos.OutputPortabilityCreated;
+import br.com.sysmap.srcmsportability.framework.adapters.out.producer.KafkaServiceImpl;
 import org.jeasy.random.EasyRandom;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -20,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.modelmapper.ModelMapper;
+import org.springframework.kafka.core.KafkaTemplate;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -37,6 +37,12 @@ public class PortabilityServiceImplTests {
     @Mock
     ModelMapper modelMapper;
 
+    @Mock
+    KafkaServiceImpl kafkaService;
+
+    @Mock
+    KafkaTemplate<String,String> kafkaTemplate;
+
     @InjectMocks
     PortabilityServiceImpl portabilityService;
 
@@ -44,12 +50,15 @@ public class PortabilityServiceImplTests {
     @DisplayName("PortabilityService - newPortability")
     void portabilityControllerNewPortability() {
         User userMapper = easy.nextObject(User.class);
-        InputPortability inputPortability = easy.nextObject(InputPortability.class);
         Portability portabilitySaved = easy.nextObject(Portability.class);
+        InputPortability inputPortability = easy.nextObject(InputPortability.class);
 
         try {
             BDDMockito.given(modelMapper.map(any(), any())).willReturn(userMapper);
             BDDMockito.given(portabilityRepository.save(any())).willReturn(portabilitySaved);
+
+            BDDMockito.given(kafkaTemplate.send(any(),any())).willReturn(null);
+            BDDMockito.doNothing().when(kafkaTemplate).flush();
 
             Portability portabilityCreated = portabilityService.newPortability(inputPortability);
             Assertions.assertNotNull(portabilityCreated);
