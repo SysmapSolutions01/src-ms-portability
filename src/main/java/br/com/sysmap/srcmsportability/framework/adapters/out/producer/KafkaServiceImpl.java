@@ -1,7 +1,9 @@
 package br.com.sysmap.srcmsportability.framework.adapters.out.producer;
 
-import br.com.sysmap.srcmsportability.application.ports.in.KafkaService;
+import br.com.sysmap.srcmsportability.application.ports.out.KafkaService;
+import br.com.sysmap.srcmsportability.domain.Portability;
 import br.com.sysmap.srcmsportability.framework.adapters.in.rest.dtos.OutPutKafkaPortabilityDTO;
+import br.com.sysmap.srcmsportability.framework.adapters.in.rest.dtos.PortabilityDTO;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -18,8 +20,27 @@ public class KafkaServiceImpl implements KafkaService {
     }
 
     @Override
-    public void eventPortability(OutPutKafkaPortabilityDTO kafkaEvent) {
+    public void eventPortability(Portability portability) {
         Gson gson = new Gson();
-        kafkaTemplate.send("src-ms-portability-create",gson.toJson(kafkaEvent));
+        kafkaTemplate.send("src-ms-portability-create",gson.toJson(kafkaEventFactor(portability)));
+
     }
+
+    private OutPutKafkaPortabilityDTO kafkaEventFactor(Portability portability) {
+        OutPutKafkaPortabilityDTO kafka = new OutPutKafkaPortabilityDTO();
+        kafka.setNumber(portability.getUser().getLine().getNumber());
+        kafka.setDocumentNumber(portability.getUser().getDocumentNumber());
+        kafka.setPortability(portabilityFactor(portability));
+        return kafka;
+    }
+
+    private PortabilityDTO portabilityFactor(Portability portability) {
+        PortabilityDTO portabilityDto = new PortabilityDTO();
+        portabilityDto.setPortabilityId(portability.getPortabilityId());
+        portabilityDto.setSource(portability.getSource());
+        portabilityDto.setTarget(portability.getTarget());
+        return portabilityDto;
+    }
+
+
 }

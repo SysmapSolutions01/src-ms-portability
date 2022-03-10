@@ -1,6 +1,6 @@
 package br.com.sysmap.srcmsportability.application.services;
 
-import br.com.sysmap.srcmsportability.application.ports.in.KafkaService;
+import br.com.sysmap.srcmsportability.application.ports.out.KafkaService;
 import br.com.sysmap.srcmsportability.application.ports.in.PortabilityService;
 import br.com.sysmap.srcmsportability.application.ports.out.PortabilityRepository;
 import br.com.sysmap.srcmsportability.domain.Portability;
@@ -36,7 +36,7 @@ public class PortabilityServiceImpl implements PortabilityService {
                 .target(inputPortability.getPortability().getTarget())
                 .build();
         portability =  portabilityRepository.save(portability);
-        kafkaService.eventPortability(kafkaEventFactor(portability));
+        kafkaService.eventPortability(portability);
         return portability;
     }
 
@@ -48,19 +48,5 @@ public class PortabilityServiceImpl implements PortabilityService {
             portabilityRepository.save(portability);
     }
 
-    private OutPutKafkaPortabilityDTO kafkaEventFactor(Portability portability) {
-        OutPutKafkaPortabilityDTO kafka = new OutPutKafkaPortabilityDTO();
-        kafka.setNumber(portability.getUser().getLine().getNumber());
-        kafka.setDocumentNumber(portability.getUser().getDocumentNumber());
-        kafka.setPortability(portabilityFactor(portability));
-        return kafka;
-    }
 
-    private PortabilityDTO portabilityFactor(Portability portability) {
-        PortabilityDTO portabilityDto = new PortabilityDTO();
-        portabilityDto.setPortabilityId(portability.getPortabilityId());
-        portabilityDto.setSource(portability.getSource());
-        portabilityDto.setTarget(portability.getTarget());
-        return portabilityDto;
-    }
 }

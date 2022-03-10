@@ -1,7 +1,7 @@
 package br.com.sysmap.srcmsportability.framework.adapters.config;
 
 import br.com.sysmap.srcmsportability.SrcMsPortabilityApplication;
-import br.com.sysmap.srcmsportability.application.ports.in.KafkaService;
+import br.com.sysmap.srcmsportability.application.ports.out.KafkaService;
 import br.com.sysmap.srcmsportability.application.ports.out.PortabilityRepository;
 import br.com.sysmap.srcmsportability.application.services.PortabilityServiceImpl;
 import org.modelmapper.ModelMapper;
