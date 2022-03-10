@@ -11,7 +11,6 @@ services:
       - 22181:2181
 
 
-
   kafka:
     container_name: 'kafka-portability'
     image: confluentinc/cp-kafka:latest
@@ -28,3 +27,19 @@ services:
       KAFKA_NUM_PARTITIONS: 3
       CONFLUENT_SUPPORT_METRICS_ENABLE: 0
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+
+  sonarqube:
+    container_name: 'sonarqube-portability'
+    image: sonarqube:latest
+    ports:
+      - 9000:9000
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: true
+
+
+  mongodb:
+    container_name: 'mongo-portability'
+    image: mongo
+    ports:
+      - 27017:27017
