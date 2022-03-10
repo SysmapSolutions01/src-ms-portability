@@ -25,11 +25,13 @@ public class PortabilityController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public OutputPortabilityCreated newPortability(@Valid  @RequestBody InputPortability inputPortability) {
+    public ResponseEntity<OutputPortabilityCreated> newPortability(@Valid  @RequestBody InputPortability inputPortability) {
         Portability portability = this.portabilityService.newPortability(inputPortability);
         log.info("Portabilidade criada com sucesso: {}", portability.getPortabilityId());
-        return new OutputPortabilityCreated(portability.getPortabilityId());
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+            new OutputPortabilityCreated(portability.getPortabilityId())
+        );
     }
 
     @PutMapping(value = "/{portabilityId}")

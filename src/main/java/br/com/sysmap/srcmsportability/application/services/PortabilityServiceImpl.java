@@ -8,8 +8,6 @@ import br.com.sysmap.srcmsportability.domain.User;
 import br.com.sysmap.srcmsportability.domain.enums.PortabilityStatus;
 import br.com.sysmap.srcmsportability.framework.adapters.in.dtos.InputPortability;
 import br.com.sysmap.srcmsportability.framework.adapters.in.dtos.UpdatePortabilityStatusDTO;
-import br.com.sysmap.srcmsportability.framework.adapters.in.rest.dtos.OutPutKafkaPortabilityDTO;
-import br.com.sysmap.srcmsportability.framework.adapters.in.rest.dtos.PortabilityDTO;
 import br.com.sysmap.srcmsportability.framework.exceptions.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
 
