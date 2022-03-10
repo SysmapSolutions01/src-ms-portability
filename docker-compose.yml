@@ -9,7 +9,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - 22181:2181
-      -
+
 
   kafka:
     container_name: 'kafka-portability'
@@ -27,6 +27,7 @@ services:
       KAFKA_NUM_PARTITIONS: 3
       CONFLUENT_SUPPORT_METRICS_ENABLE: 0
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
 
   sonarqube:
     container_name: 'sonarqube-portability'
