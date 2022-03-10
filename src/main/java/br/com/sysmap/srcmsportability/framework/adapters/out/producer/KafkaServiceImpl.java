@@ -23,6 +23,7 @@ public class KafkaServiceImpl implements KafkaService {
     public void eventPortability(Portability portability) {
         Gson gson = new Gson();
         kafkaTemplate.send("src-ms-portability-create",gson.toJson(kafkaEventFactor(portability)));
+        log.info("Payload enviado {}",kafkaEventFactor(portability));
 
     }
 
