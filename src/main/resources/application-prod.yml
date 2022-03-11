@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: "org.postgresql.Driver"
+    database-platform: "org.hibernate.dialect.PostgreSQLDialect"
+    url: "jdbc:postgresql://localhost:5433/src-ms-portability"
+    username: "postgres"
+    password: 'postgres'
+    hikari:
+      connectionTimeout: '20000'
+      maximumPoolSize: '5'
+  jpa:
+    hibernate:
+      ddl-auto: "create" # update
+
+  kafka:
+    bootstrap-servers: localhost:29092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer:  org.apache.kafka.common.serialization.StringSerializer
+topic:
+  name:
+    producer: src-ms-portability-create

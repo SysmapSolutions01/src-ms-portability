@@ -43,3 +43,20 @@ services:
     image: mongo
     ports:
       - 27017:27017
+
+
+  postgresql:
+    image: postgres:13.5-alpine
+    container_name: postgre-portability
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=src-ms-portability
+    volumes:
+      - db_data:/var/lib/postgresql
+
+volumes:
+  db_data: {}
