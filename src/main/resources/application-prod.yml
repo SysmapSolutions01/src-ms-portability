@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      jdbc:
+        lob.non-contextual-creation:true
+    properties:
+      hibernate:
+        show_sql: true
+  kafka:
+    bootstrap-servers: rocket-01.srvs.cloudkafka.com:9094
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+    properties:
+      security:
+        protocol: SASL_SSL
+      sasl:
+        mechanism: SCRAM-SHA-256
+        jaas:
+          config: org.apache.kafka.common.security.scram.ScramLoginModule required username="ocpv08td" password="Lg6w7qhcyJ4kkY99s4lTspM72SUP_1gk";
+
+topic:
+  name:
+    producer: ocpv08td-src-ms-portability-create

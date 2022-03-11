@@ -1,0 +1,173 @@
+swagger: '2.0'
+info:
+  description: >-
+    Serviço destinado a realizar portabilidade de números VIVO para outras
+    operadoras.
+  version: 1.0.0
+  title: api src-ms-portability
+  termsOfService: urn:tos
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+host: localhost:8080
+basePath: /
+tags:
+  - name: portability-controller
+    description: Portability Controller
+paths:
+  /portability:
+    post:
+      tags:
+        - portability-controller
+      summary: Create new portability.
+      operationId: newPortabilityUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+        - application/json
+      parameters:
+        - in: body
+          name: inputPortability
+          description: Body new portability
+          required: true
+          schema:
+            $ref: '#/definitions/InputPortability'
+      responses:
+        '201':
+          description: Return portability UUID.
+          schema:
+            $ref: '#/definitions/OutputPortabilityCreated'
+        '422':
+          description: Return validation errors
+      deprecated: false
+  /portability/{portabilityId}:
+    put:
+      tags:
+        - portability-controller
+      summary: Update portability status.
+      operationId: putPortabilityUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+        - application/json
+      parameters:
+        - name: portabilityId
+          in: path
+          description: portabilityId
+          required: true
+          type: string
+          format: uuid
+        - in: body
+          name: status
+          description: Status portability
+          required: true
+          schema:
+            $ref: '#/definitions/UpdatePortabilityStatusDTO'
+      responses:
+        '200':
+          description: Return status portability.
+          schema:
+            type: string
+        '404':
+          description: Return portability not found exception.
+      deprecated: false
+definitions:
+  AddressDTO:
+    type: object
+    properties:
+      city:
+        type: string
+        description: name city
+      country:
+        type: string
+        description: name country
+      number:
+        type: string
+        description: number of the address
+      stateOrRegion:
+        type: string
+        description: name state or region
+      street:
+        type: string
+        description: name street
+    title: AddressDTO
+  InputPortability:
+    type: object
+    properties:
+      portability:
+        description: portability data
+        $ref: '#/definitions/PortabilityDTO'
+      user:
+        description: user data
+        $ref: '#/definitions/UserDTO'
+    title: InputPortability
+  LineDTO:
+    type: object
+    properties:
+      number:
+        type: string
+        description: cellphone number
+    title: LineDTO
+  OutputPortabilityCreated:
+    type: object
+    properties:
+      portabilityId:
+        type: string
+        format: uuid
+        description: UUID portability
+    title: OutputPortabilityCreated
+  PortabilityDTO:
+    type: object
+    properties:
+      source:
+        type: string
+        description: 'source telephone company : VIVO'
+        enum:
+          - VIVO
+          - CLARO
+          - NEXTEL
+          - TIM
+          - OI
+      target:
+        type: string
+        description: 'target telephone company : TIM,CLARO,OI or NEXTEL'
+        enum:
+          - VIVO
+          - CLARO
+          - NEXTEL
+          - TIM
+          - OI
+    title: PortabilityDTO
+  UpdatePortabilityStatusDTO:
+    type: object
+    properties:
+      status:
+        type: string
+        description: status portability
+        enum:
+          - PROCESSANDO_PORTABILIDADE
+          - PORTADO
+          - NAO_PORTADO
+    title: UpdatePortabilityStatusDTO
+  UserDTO:
+    type: object
+    properties:
+      address:
+        description: address data
+        $ref: '#/definitions/AddressDTO'
+      dateOfBirth:
+        type: string
+        format: date
+        description: birth date
+      documentNumber:
+        type: string
+        description: number CPF
+      line:
+        description: line data
+        $ref: '#/definitions/LineDTO'
+      name:
+        type: string
+    title: UserDTO
