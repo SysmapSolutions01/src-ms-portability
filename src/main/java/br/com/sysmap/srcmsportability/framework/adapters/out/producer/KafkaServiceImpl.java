@@ -24,7 +24,6 @@ public class KafkaServiceImpl implements KafkaService {
         Gson gson = new Gson();
         kafkaTemplate.send("src-ms-portability-create",gson.toJson(kafkaEventFactor(portability)));
         log.info("Payload enviado {}",kafkaEventFactor(portability));
-
     }
 
     private OutPutKafkaPortabilityDTO kafkaEventFactor(Portability portability) {
@@ -42,6 +41,4 @@ public class KafkaServiceImpl implements KafkaService {
         portabilityDto.setTarget(portability.getTarget());
         return portabilityDto;
     }
-
-
 }

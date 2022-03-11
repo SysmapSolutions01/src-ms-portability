@@ -15,7 +15,7 @@
 	<description>src-ms-portability</description>
 	<properties>
 		<java.version>11</java.version>
-		<sonar.exclusions>**/logback/**,**/*Application*,**/config/*,**/exceptions/*,**/helpers/**,**/dtos/*,**/domain/**,**/SrcMsPortabilityApplication.class</sonar.exclusions>
+		<sonar.exclusions>**/logback/**,**/persistence/**,**/*Application*,**/config/*,**/exceptions/*,**/helpers/**,**/dtos/*,**/domain/**,**/SrcMsPortabilityApplication.class</sonar.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>
