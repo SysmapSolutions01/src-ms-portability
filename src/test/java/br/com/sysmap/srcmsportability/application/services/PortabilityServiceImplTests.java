@@ -1,4 +1,4 @@
-package br.com.sysmap.srcmsportability;
+package br.com.sysmap.srcmsportability.application.services;
 
 import br.com.sysmap.srcmsportability.application.ports.out.PortabilityRepository;
 import br.com.sysmap.srcmsportability.application.services.PortabilityServiceImpl;
@@ -28,7 +28,7 @@ import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
-public class PortabilityServiceImplTests {
+class PortabilityServiceImplTests {
     EasyRandom easy = new EasyRandom();
 
     @Mock
