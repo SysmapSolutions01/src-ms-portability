@@ -1,3 +1,5 @@
 spring:
   profiles:
-    active: "dev"
+    active: "prod"
+  application:
+    name: src-ms-portability

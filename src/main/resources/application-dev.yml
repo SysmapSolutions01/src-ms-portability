@@ -19,4 +19,4 @@ spring:
       value-serializer:  org.apache.kafka.common.serialization.StringSerializer
 topic:
   name:
-    producer: src-ms-portability-create
+    producer: ocpv08td-src-ms-portability-create
