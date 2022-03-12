@@ -59,7 +59,7 @@ services:
       - db_data:/var/lib/postgresql
 
   ms1:
-    image: 'src-ms-portability-img:latest'
+    image: 'sysmaptreinamento2/src-ms-portability:latest'
     build:
       context: .
     container_name: src-ms-portability
