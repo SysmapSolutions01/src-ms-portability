@@ -50,13 +50,29 @@ services:
     container_name: postgre-portability
     restart: always
     ports:
-      - "5433:5432"
+      - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=src-ms-portability
     volumes:
       - db_data:/var/lib/postgresql
+
+  ms1:
+    image: 'src-ms-portability-img:latest'
+    build:
+      context: .
+    container_name: src-ms-portability
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgresql
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgre-portability:5432/src-ms-portability
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create
 
 volumes:
   db_data: {}
