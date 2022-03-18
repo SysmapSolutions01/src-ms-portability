@@ -6,6 +6,4 @@ public enum TelephoneCompany {
     NEXTEL,
     TIM,
     OI
-
-
 }
