@@ -10,7 +10,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TelephoneCompanyTargetConstraint {
 
-    String message() default "Can't make portability from the same SOURCE and TARGET Telephone Company.";
+    String message() default "Target cant't be VIVO.";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default{};
 }
