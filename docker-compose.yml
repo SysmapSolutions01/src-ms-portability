@@ -8,7 +8,7 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     ports:
-      - 22181:2181
+      - "22181:2181"
 
 
   kafka:
@@ -17,7 +17,7 @@ services:
     depends_on:
       - zookeeper
     ports:
-      - 29092:29092
+      - "29092:29092"
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -33,16 +33,16 @@ services:
     container_name: 'sonarqube-portability'
     image: sonarqube:latest
     ports:
-      - 9000:9000
+      - "9000:9000"
     environment:
-      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: true
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
 
 
   mongodb:
     container_name: 'mongo-portability'
     image: mongo
     ports:
-      - 27017:27017
+      - "27017:27017"
 
 
   postgresql:
@@ -50,13 +50,29 @@ services:
     container_name: postgre-portability
     restart: always
     ports:
-      - "5433:5432"
+      - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=src-ms-portability
     volumes:
       - db_data:/var/lib/postgresql
+
+  ms1:
+    image: 'sysmaptreinamento2/src-ms-portability:latest'
+    build:
+      context: .
+    container_name: src-ms-portability
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgresql
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgre-portability:5432/src-ms-portability
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create
 
 volumes:
   db_data: {}
